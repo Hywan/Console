@@ -50,6 +50,8 @@ class Image {
 
     protected $_image = null;
     protected $_name = null;
+    protected $_width = 'auto';
+    protected $_height = 'auto';
 
 
 
@@ -93,6 +95,40 @@ class Image {
         return $this->_name;
     }
 
+    public function setSize ( $width, $height ) {
+
+        $this->setWidth($width);
+        $this->setHeight($height);
+
+        return;
+    }
+
+    public function setWidth ( $width ) {
+
+        $old         = $this->_width;
+        $this->_width = $width;
+
+        return $old;
+    }
+
+    public function getWidth ( ) {
+
+        return $this->_width;
+    }
+
+    public function setHeight ( $height ) {
+
+        $old         = $this->_height;
+        $this->_height = $height;
+
+        return $old;
+    }
+
+    public function getHeight ( ) {
+
+        return $this->_height;
+    }
+
     protected function _format ( $inline = true ) {
 
         $image   = $this->getImage();
@@ -104,12 +140,16 @@ class Image {
         else
             $size = strlen($content);
 
+        $width   = $this->getWidth();
+        $height  = $this->getHeight();
         $content = base64_encode($content);
 
         return "\033]1337;File=" .
                'name' . $name . ';' .
                'size=' . $size . ';' .
-               'inline=' . ((int) $inline) . ':' .
+               'inline=' . ((int) $inline) . ';' .
+               'width=' . $width . ';' .
+               'height=' . $height . ':' .
                $content .
                "\007\n";
     }
