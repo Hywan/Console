@@ -231,7 +231,22 @@ We are also able to manipulate the history, thanks to the `addHistory`,
 Finally, we have autocompleters that are enabled on `Tab`. If one solution is
 proposed, it will be inserted directly. If many solutions are proposed, we are
 able to navigate in a menu to select the solution (with the help of keyboard
-arrows, Enter, Esc etc.).
+arrows, Enter, Esc etc.). Also, we are able to combine autocompleters. The
+following example combine the `Word` and `Path` autocompleters:
+
+```php
+$functions = get_defined_functions();
+$readline->setAutocompleter(
+    new Hoa\Console\Readline\Autocompleter\Aggregate(array(
+        new Hoa\Console\Readline\Autocompleter\Path(),
+        new Hoa\Console\Readline\Autocompleter\Word($functions['internal'])
+    ))
+);
+```
+
+Here is an example of the result:
+
+![Hoa](https://github.com/Hywan/Console/blob/documentation-test/Documentation/Image/Readline_autocompleters.gif)
 
 On Windows, a readline is equivalent to a simple `fgets(STDIN)`.
 
