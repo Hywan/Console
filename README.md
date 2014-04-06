@@ -246,7 +246,7 @@ $readline->setAutocompleter(
 
 Here is an example of the result:
 
-![Hoa](https://github.com/Hywan/Console/blob/documentation-test/Documentation/Image/Readline_autocompleters.gif)
+![Autocompleters in action](https://github.com/Hywan/Console/blob/documentation-test/Documentation/Image/Readline_autocompleters.gif)
 
 On Windows, a readline is equivalent to a simple `fgets(STDIN)`.
 
